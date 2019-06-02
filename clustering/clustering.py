@@ -1,5 +1,9 @@
+# Create Spark Session
+
 from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName('k_means').getOrCreate()
+
+# Importing libraries
 
 import pyspark
 import matplotlib.pyplot as plt
@@ -8,9 +12,10 @@ from pyspark.sql.types import *
 from pyspark.sql.functions import rand, randn
 from pyspark.ml.clustering import KMeans
 
+# Prepare Data
+
 df=spark.read.csv('iris_dataset.csv',inferSchema=True,header=True)
 print((df.count(),len(df.columns)))
-
 
 df.columns
 df.printSchema()
@@ -19,6 +24,7 @@ df.orderBy(rand()).show(10,False)
 df.select('species').distinct().count()
 df.groupBy('species').count().orderBy('count',ascending=False).show(10,False)
 
+# Feature Engineering
 
 from pyspark.ml.feature import VectorAssembler
 
@@ -27,6 +33,9 @@ input_cols=['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 # Transform all features into a vector using VectorAssembler
 vec_assembler = VectorAssembler(inputCols = input_cols, outputCol='features')
 final_data = vec_assembler.transform(df)
+
+
+# Hyper parameter tuning
 
 errors=[]
 
@@ -45,7 +54,10 @@ plt.xlabel('Number of Clusters (K)')
 plt.ylabel('SSE')
 plt.show()
 
-#Selecting k =3 for kmeans clustering
+
+# Selecting k =3 for kmeans clustering
+# Train and Predict
+
 kmeans = KMeans(featuresCol='features',k=3,)
 model = kmeans.fit(final_data)
 model.transform(final_data).groupBy('prediction').count().show()
