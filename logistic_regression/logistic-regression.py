@@ -1,34 +1,3 @@
-#import SparkSession
-from pyspark.sql import SparkSession
-spark=SparkSession.builder.appName('log_reg').getOrCreate()
-
-#read the dataset
-df=spark.read.csv('Log_Reg_dataset.csv',inferSchema=True,header=True)
-
-from pyspark.sql.functions import *
-
-#check the shape of the data 
-print((df.count(),len(df.columns)))
-
-#printSchema
-df.printSchema()
-
-#number of columns in dataset
-df.columns
-
-#view the dataset
-df.show(5)
-
-#Exploratory Data Analysis
-df.describe().show()
-df.groupBy('Country').count().show()
-df = df.withColumnRenamed("Platform", "Search_Engine")
-df.groupBy('Search_Engine').count().show()
-df.groupBy('Status').count().show()
-df.groupBy('Country').mean().show()
-df.groupBy('Search_Engine').mean().show()
-df.groupBy('Status').mean().show()
-
 #converting categorical data to numerical form
 from pyspark.ml.feature import StringIndexer
 
