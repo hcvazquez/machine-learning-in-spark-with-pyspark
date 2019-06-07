@@ -2,7 +2,7 @@
 
 This repository cover some special use cases of Spark for Machine-Learning applications using Pyspark. I will introduce Spark, just for informational purposes
 
-## History of Spark
+## About Spark
 
 The Spark project started in 2009 in AMP lab in UC Berkeley. It was the time of the birth of high-computing framewors. I remember work with another high performance computing framework, GridGain, but that's another story. Initially, Spark was a research project with a focus to build a fast in-memory computing framework. Three years later in 2012 Spark had the first public release. 
 As Sparks started to gain traction in the industry, it was no longer a research project, 
