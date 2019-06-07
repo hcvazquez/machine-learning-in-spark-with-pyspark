@@ -1,6 +1,6 @@
 # Machine Learning in Spark with Pyspark
 
-This repository cover some use cases of Spark for Machine-Learning applications using Pyspark. I will introduce Spark, just for informational purposes
+This repository cover some special use cases of Spark for Machine-Learning applications using Pyspark. I will introduce Spark, just for informational purposes
 
 ## History of Spark
 
